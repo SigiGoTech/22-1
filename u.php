@@ -3,7 +3,7 @@ session_start();
 
 //pirma karta priskiriam tuscia masyva
 if(!isset($_SESSION['skaiciuokle'])) {
-    $_SESSION['skaiciuokle'] = [];
+    $_SESSION['skaiciuokle'] = [];// lygi tusciam masyvui
 }
 
 if(!empty($_POST)) {
@@ -20,7 +20,7 @@ $skaicius = rand(100, 500);
 
 $masyvas = [];
 foreach(range(0, $skaicius-1) as $val){
-    $masyvas[] = 'A';
+    $masyvas[] = 'A';// automatiskai priskiriamas indeksas
 }
 
 
@@ -64,9 +64,6 @@ foreach($masyvas as $key => $val){
         $c++;
     }
 }
-
-
-
 
 $_SESSION['skaiciuokle'][] = [$a, $b, $c];
 
