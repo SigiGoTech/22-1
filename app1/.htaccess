@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    <FilesMatch "\.(json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+</IfModule>
