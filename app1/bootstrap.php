@@ -8,7 +8,6 @@ require 'nav.php';
 
 //sesijos galiojimas 30 s
 
-
 if ($_SESSION['login'] == 1) {
     if($_SESSION['time'] + 30 < time()) {
         $_SESSION['login'] = 0;
