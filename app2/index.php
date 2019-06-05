@@ -22,12 +22,36 @@ foreach(getQuestions() as $val)
     ?>
     <p><?= $klausimas ?></p>
     <?php
-    foreach ($atsakymai as $key2 => $val2) {
-    ?>
+    if(!empty($atsakymai)) {
+        if(count($atsakymai)>4) {
+            ?>
+            <select name="q_<?= $id ?>[]">
+            <?php
+            foreach ($atsakymai as $key2 => $val2) {
+            ?>
 
-    <input type="checkbox" name="q_<?= $id ?>[]" value="<?= $key2 ?>"><label><?= $val2 ?></label>
+            <option value="<?= $key2 ?>"><?= $val2 ?></option>
 
-    <?php
+            <?php
+            }
+            ?>
+            </select>
+            <?php
+        }
+        else {
+            foreach ($atsakymai as $key2 => $val2) {
+            ?>
+
+            <input type="checkbox" name="q_<?= $id ?>[]" value="<?= $key2 ?>"><label><?= $val2 ?></label>
+
+            <?php
+            }
+        }
+    }
+    else {
+        ?>
+        <input type="text" name="q_<?= $id ?>[]">
+        <?php
     }
 }
 

@@ -6,6 +6,7 @@
         "a2":"8",
         "a3":"10",
         "a4":"35",
+        "a5":"350",
         "correct": "a2"
     },
         
@@ -34,5 +35,10 @@
         "a2":"700nm",
         "a3":"100nm",
         "correct": "a2"
+    },
+    {
+        "id": 5,
+        "q":"Kiek metų gyvena nykštukai?",
+        "correct": "300"
     }
 ]
