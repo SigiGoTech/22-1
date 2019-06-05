@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "q":"Kiek miške gyvena ežių?",
+        "a1":"5",
+        "a2":"8",
+        "a3":"10",
+        "a4":"35",
+        "correct": "a2"
+    },
+        
+    {
+        "id": 2,
+        "q":"Kokia spalva yra mėlyna?",
+        "a1":"raudoda",
+        "a2":"gelton",
+        "a3":"mėlyna",
+        "correct": "a3"
+    },
+
+    {
+        "id": 3,
+        "q":"Kur gyvena nykštukai?",
+        "a1":"Miške",
+        "a2":"Pasakose",
+        "a3":"WC",
+        "correct": ["a2","a3"]
+    },
+
+    {
+        "id": 4,
+        "q":"Kokios bangos yra raudonos?",
+        "a1":"300nm",
+        "a2":"700nm",
+        "a3":"100nm",
+        "correct": "a2"
+    }
+]
