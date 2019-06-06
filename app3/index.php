@@ -1,17 +1,17 @@
 <?php
 
-
+// skaitome csv faila
 $csv = [];
-if (($handle = fopen("failas.csv", "r")) !== FALSE) {
-    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-        $csv[] = $data;
+if (($handle = fopen("failas.csv", "r")) !== FALSE) {// atsidarome faila
+    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {// skaitome po viena eilute
+        $csv[] = $data; 
     }
-    fclose($handle);
+    fclose($handle);// uzdarome faila
 }
 
 
 
-$csv[] = ['Rankinė', 'Rankinė', 'Rankinė', 'RankinŽŽŽŽŽŽ', 6];
+
 
 
 
@@ -29,8 +29,9 @@ if (!$conn) {
 }
 echo "Connected successfully";
 
-mysqli_set_charset($conn,'utf8');
+mysqli_set_charset($conn,'utf8');// pakeiciam duomenu rasyma i utf-8 formata, kad butu LT raides
 
+// kuriame lentele, jeigu dar tokios nera
 $sql = "CREATE TABLE IF NOT EXISTS lenta (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     prekes_pavadinimas VARCHAR(100) NOT NULL,
@@ -41,7 +42,7 @@ $sql = "CREATE TABLE IF NOT EXISTS lenta (
     )
     CHARACTER SET utf8 COLLATE utf8_general_ci;";
    
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_query($conn, $sql)) {// siunciame lenteles sukurimo koda i db
         echo "Table lenta created successfully";
     } else {
         echo "Error creating table: " . mysqli_error($conn);
@@ -49,16 +50,16 @@ $sql = "CREATE TABLE IF NOT EXISTS lenta (
 
 
 
-    // array_shift($csv);
+    array_shift($csv);// ismetam pirma eilute su stulpeliu pavadinimais
 
-    // foreach($csv as $val) {
+    foreach($csv as $val) {// rasome po viena eilute i db
 
-    // $sql = "INSERT INTO lenta (prekes_pavadinimas, prekes_vienetas, prekes_pozymiai, valiuta, kaina)
-    // VALUES ('".$val[0]."', '".$val[1]."', '".$val[2]."', '".$val[3]."', '".$val[4]."')";
+    $sql = "INSERT INTO lenta (prekes_pavadinimas, prekes_vienetas, prekes_pozymiai, valiuta, kaina)
+    VALUES ('".$val[0]."', '".$val[1]."', '".$val[2]."', '".$val[3]."', '".$val[4]."')";
 
-    // mysqli_query($conn, $sql);
+    mysqli_query($conn, $sql);
 
-    // }
+    }
 
 
 
@@ -68,27 +69,37 @@ $sql = "CREATE TABLE IF NOT EXISTS lenta (
 
 // print_r($csv);
 
-$sql = "SELECT * FROM lenta WHERE kaina < 1000";
+$sql = "SELECT * FROM lenta WHERE kaina < 1000";// isrenkame prekes kuriu kaina mazesne nei 1000
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
    // kiekvieną eilutę atskirai
    while($row = mysqli_fetch_assoc($result)) {
-       $rez[] = $row;
+       $rez[] = $row;// po viena eilute rasome i masyva
    }
 } else {
    echo "0 results";
 }
 
+// pridedam stulpeliu pavadinimus
 $exp = 'Prekės pavadinimas;Prekės vienetas;Prekės požymiai;Prekės valiuta;Kaina: -default- - prekės kaina';
 foreach ($rez as $val) {
     $exp =  $exp ."\n";
-    array_shift($val);
-    foreach ($val as $val1) {
-        $exp = $exp. $val1 . ';';
+    array_shift($val);// ismetam id stulpeli
+    $first = true; // pirmas duomuo eiluteje. reikia tam, kad po paskutinio duomens nebutu kabliataskio
+    foreach ($val as $val1) {// rasome duomenis atskirdami kabliataskiais
+        if($first) {
+            $exp = $exp. $val1;
+            $first = false;
+        }
+        else {
+            $exp = $exp. ';' . $val1;
+        }
+        
     }
+
     
 }
 
-file_put_contents('exportas.csv', $exp);
+file_put_contents('exportas.csv', $exp); //irasome i faila
 
