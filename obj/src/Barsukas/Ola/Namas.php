@@ -1,10 +1,15 @@
 <?php
-class Namas
+namespace Barsukas\Ola;
+
+abstract class Namas
 {
     public $aukstu_skaicius = 38;
     protected $stogas = 'cerpes';
     public static $pastoge = 'yra';
 
+    static abstract public function ura();
+    
+    
     public static function valio()
     {
         echo '<h1>VALIO</h1>';

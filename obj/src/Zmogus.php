@@ -1,5 +1,5 @@
 <?php
-class Zmogus extends Namas
+class Zmogus extends Barsukas\Ola\Namas implements Barsukas\Automobilis
 {
     public $vardas;
     public $pavarde;
@@ -19,6 +19,17 @@ class Zmogus extends Namas
         $this->amzius = rand(40, 60);
     }
 
+    
+    public static function ura()
+    {
+        echo 'URA';
+    }
+
+    public function model()
+    {
+        echo 'Opel';
+    }
+    
     public function get_aukstus()
     {
         return $this->aukstu_skaicius;
