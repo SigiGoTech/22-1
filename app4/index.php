@@ -1,5 +1,8 @@
 <?php
 use FileManager\App;
+use FileManager\Files;
+
+define('DIR', __DIR__); // sito folderio kelio konstanta
 
 spl_autoload_register(function ($class) {
     $prefix = 'FileManager';
@@ -17,4 +20,7 @@ spl_autoload_register(function ($class) {
     }
 });
 
-App::start();
+
+
+App::render();
+
