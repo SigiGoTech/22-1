@@ -97,9 +97,6 @@ foreach ($rez as $val) {
         }
         
     }
-
-    
 }
-
 file_put_contents('exportas.csv', $exp); //irasome i faila
 
