@@ -1,3 +1,8 @@
+<?php
+defined('DIR') or exit;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
